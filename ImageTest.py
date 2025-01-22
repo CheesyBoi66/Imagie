@@ -7,12 +7,14 @@ from PIL import ImageTk, Image
 curImage = ""
 
 
+
 Mx,My = 0,0
 
 def Moushe(event):
     Mx,My = event.x, event.y
-    circ = mainCanv.create_oval(Mx,My,50,50,fill="goldenrod")
-    print (Mx,My)
+    
+    
+    # print (Mx,My)
 
 
 def makeWindow():
@@ -26,9 +28,12 @@ def makeWindow():
     mainWin.state("zoomed")  # Starts the program maximized
     mainWin.grid_columnconfigure(0, weight=1)
     mainWin.bind('<Motion>', Moushe)
-
-    mainCanv = tk.Canvas(mainWin,height=mainWin.winfo_height(),width=mainWin.winfo_width(), bg="blue")
+    time.sleep(1)
+    mainCanv = tk.Canvas(mainWin, width=mainWin.winfo_width(), height=mainWin.winfo_height(), bg="blue")
     mainCanv.grid(row=0,column=0, sticky="ew")
+    circ = mainCanv.create_oval(Mx,My,50,50,fill="goldenrod")
+    print(mainWin.winfo_height)
+
 
 
 
