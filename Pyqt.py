@@ -4,13 +4,16 @@ from keyboard import is_pressed
 
 x,y = 0,0
 w,h = 1920,200
-
+global winImg
 def init():
+    global winImg
     winImg = np.ones((1080, 1920, 3), dtype=np.uint8) * 255
-    cv2.rectangle(winImg,(x,y),(x+w,y+h),(0,100,255), -1)
     cv2.imshow("Goofy moe", winImg)
     
 
+def draw_thingies():
+    global winImg, x, y, w, h
+    cv2.rectangle(winImg,(x,y),(x+w,y+h),(0,100,255), -1)
 
 
 def main():  
@@ -22,17 +25,19 @@ def main():
     init()
     
     while True:
+        init()
         key = cv2.waitKey(1) & 0xFF  # Process OpenCV events
 
         if is_pressed('w'):
             y -= 2
-            init()
+            draw_thingies()
+
             print("w")    
 
 
         if is_pressed('s'):
             y += 2
-            init()
+            draw_thingies()
             print("s")
 
         if is_pressed('q'):  # Exit if 'q' is pressed
